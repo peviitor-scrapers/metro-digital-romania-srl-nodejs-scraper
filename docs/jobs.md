@@ -10,11 +10,11 @@
 | Location | PIPERA, 43, Bucureşti Sectorul 2, Bucureşti |
 | Website | [https://metro.digital](https://metro.digital) |
 | Careers | [https://careers.metro.digital/jobs](https://careers.metro.digital/jobs) |
-| Last Scraped | 2026-08-08 |
+| Last Scraped | 2026-08-09 |
 
 ## Current Job Listings (22)
 
-_Generated: 2026-08-08T06:46:32.362Z_
+_Generated: 2026-08-09T06:51:44.852Z_
 
 ### Project Manager - Project & Program Management
 
