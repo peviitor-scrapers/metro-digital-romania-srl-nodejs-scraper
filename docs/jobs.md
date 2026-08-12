@@ -10,11 +10,25 @@
 | Location | PIPERA, 43, Bucureşti Sectorul 2, Bucureşti |
 | Website | [https://metro.digital](https://metro.digital) |
 | Careers | [https://careers.metro.digital/jobs](https://careers.metro.digital/jobs) |
-| Last Scraped | 2026-08-11 |
+| Last Scraped | 2026-08-12 |
 
-## Current Job Listings (22)
+## Current Job Listings (23)
 
-_Generated: 2026-08-11T07:02:00.059Z_
+_Generated: 2026-08-12T07:20:12.478Z_
+
+### AI Solution Architect – AI & Automation platform (m/f/d)
+
+- **URL:** [https://careers.metro.digital/job/ai-solution-architect-ai-and-automation-platform-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-33864](https://careers.metro.digital/job/ai-solution-architect-ai-and-automation-platform-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-33864)
+- **Work Mode:** on-site
+- **Location:** România
+- **Status:** scraped
+
+### Solution Expert- Marketing platform (m/f/d)
+
+- **URL:** [https://careers.metro.digital/job/solution-expert-marketing-platform-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-33482](https://careers.metro.digital/job/solution-expert-marketing-platform-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-33482)
+- **Work Mode:** on-site
+- **Location:** România
+- **Status:** scraped
 
 ### Project Manager - Project & Program Management
 
@@ -47,13 +61,6 @@ _Generated: 2026-08-11T07:02:00.059Z_
 ### Platform Architect- Procurement (m/f/d)
 
 - **URL:** [https://careers.metro.digital/job/platform-architect-procurement-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-29923](https://careers.metro.digital/job/platform-architect-procurement-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-29923)
-- **Work Mode:** on-site
-- **Location:** România
-- **Status:** scraped
-
-### Solution Expert- Marketing platform (m/f/d)
-
-- **URL:** [https://careers.metro.digital/job/solution-expert-marketing-platform-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-33482](https://careers.metro.digital/job/solution-expert-marketing-platform-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-33482)
 - **Work Mode:** on-site
 - **Location:** România
 - **Status:** scraped
