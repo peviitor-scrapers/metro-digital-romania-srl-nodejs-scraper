@@ -17,7 +17,7 @@ All company-specific configuration lives in `scraper/config/company.json`:
   "careerUrl": "https://careers.metro.digital/jobs",
   "apiBase": "https://careers.metro.digital",
   "defaultLocation": "București",
-  "scraperFile": "https://raw.githubusercontent.com/sebiboga/metro-digital-romania-srl-nodejs-scraper/main/.github/workflows/job-seeker-ro-spider.yml"
+  "scraperFile": "https://raw.githubusercontent.com/peviitor-scrapers/metro-digital-romania-srl-nodejs-scraper/main/.github/workflows/job-seeker-ro-spider.yml"
 }
 ```
 
