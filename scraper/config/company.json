@@ -1,0 +1,10 @@
+{
+  "id": "43319098",
+  "company": "METRO DIGITAL ROMANIA S.R.L.",
+  "brand": "METRO DIGITAL",
+  "status": "activ",
+  "location": ["București"],
+  "website": ["https://metro.digital"],
+  "career": ["https://careers.metro.digital/jobs"],
+  "scraperFile": "https://github.com/peviitor-scrapers/metro-digital-romania-srl-nodejs-scraper/actions/workflows/job-seeker-ro-spider.yml"
+}
