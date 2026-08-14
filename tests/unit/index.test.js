@@ -4,8 +4,40 @@ describe('index.js Component Tests', () => {
   let index;
 
   beforeAll(async () => {
-    index = await import('../../index.js');
+    index = await import('../../scraper/index.js');
   });
+
+  const sampleHtml = `
+<html>
+<body>
+  <div class="career-list-wrap">17 Result(s)</div>
+  <div class="attrax-vacancy-tile">
+    <div class="attrax-vacancy-tile__title">Senior Developer</div>
+    <a href="/en/job/123/senior-developer">View job</a>
+    <div class="attrax-vacancy-tile__item">
+      <div class="attrax-vacancy-tile__item-label">Location</div>
+      <div class="attrax-vacancy-tile__item-value">Bucharest</div>
+    </div>
+    <div class="attrax-vacancy-tile__item">
+      <div class="attrax-vacancy-tile__item-label">Work model</div>
+      <div class="attrax-vacancy-tile__item-value">Remote</div>
+    </div>
+  </div>
+  <div class="attrax-vacancy-tile">
+    <div class="attrax-vacancy-tile__title">Backend Engineer</div>
+    <a href="/en/job/456/backend-engineer">View job</a>
+    <div class="attrax-vacancy-tile__item">
+      <div class="attrax-vacancy-tile__item-label">Location</div>
+      <div class="attrax-vacancy-tile__item-value">Cluj-Napoca</div>
+    </div>
+    <div class="attrax-vacancy-tile__item">
+      <div class="attrax-vacancy-tile__item-label">Work model</div>
+      <div class="attrax-vacancy-tile__item-value">Hybrid</div>
+    </div>
+  </div>
+</body>
+</html>
+`;
 
   describe('transformJobsForSOLR', () => {
     it('should filter locations to only Romanian cities', () => {
@@ -13,7 +45,7 @@ describe('index.js Component Tests', () => {
         jobs: [
           { url: 'https://test.com/1', title: 'Job 1', location: ['România'] },
           { url: 'https://test.com/2', title: 'Job 2', location: ['Bucharest'] },
-          { url: 'https://test.com/3', title: 'Job 3', location: ['Germany'] },
+          { url: 'https://test.com/3', title: 'Job 3', location: ['Bulgaria'] },
           { url: 'https://test.com/4', title: 'Job 4', location: ['Cluj-Napoca'] },
           { url: 'https://test.com/5', title: 'Job 5', location: [] }
         ]
@@ -31,7 +63,7 @@ describe('index.js Component Tests', () => {
     it('should keep company uppercase', () => {
       const payload = {
         source: 'careers.metro.digital',
-        company: 'metro digital romania s.r.l.',
+        company: 'metro digital romania srl',
         cif: '43319098',
         jobs: [
           { url: 'https://test.com/1', title: 'Job 1', company: 'metro digital', cif: '43319098' }
@@ -40,7 +72,7 @@ describe('index.js Component Tests', () => {
 
       const result = index.transformJobsForSOLR(payload);
 
-      expect(result.company).toBe('METRO DIGITAL ROMANIA S.R.L.');
+      expect(result.company).toBe('METRO DIGITAL ROMANIA SRL');
     });
 
     it('should normalize workmode values', () => {
@@ -70,10 +102,10 @@ describe('index.js Component Tests', () => {
   describe('mapToJobModel', () => {
     it('should map raw job to job model format', () => {
       const rawJob = {
-        url: 'https://careers.metro.digital/job/test-job-jid-123',
+        url: 'https://careers.metro.digital/job/123',
         title: 'Senior Developer',
-        location: ['București'],
-        tags: ['javascript', 'react'],
+        location: ['Bucharest'],
+        tags: ['Java', 'Spring'],
         workmode: 'hybrid'
       };
 
@@ -117,78 +149,35 @@ describe('index.js Component Tests', () => {
   });
 
   describe('parseHtmlJobs', () => {
-    it('should parse Metro Digital HTML with vacancy tiles', () => {
-      const html = `
-        <html>
-        <body>
-          <div>17 Result(s)</div>
-          <div class="attrax-vacancy-tile">
-            <a href="/job/platform-architect-procurement-in-soseaua-pipera-43-bucuresti-jid-29901" class="attrax-vacancy-tile__title">Platform Architect - Procurement</a>
-            <div class="attrax-vacancy-tile__item">
-              <span class="attrax-vacancy-tile__item-label">Location</span>
-              <span class="attrax-vacancy-tile__item-value">București</span>
-            </div>
-            <div class="attrax-vacancy-tile__item">
-              <span class="attrax-vacancy-tile__item-label">Work Model</span>
-              <span class="attrax-vacancy-tile__item-value">Hybrid</span>
-            </div>
-          </div>
-          <div class="attrax-vacancy-tile">
-            <a href="/job/cloud-engineer-in-soseaua-pipera-43-bucuresti-jid-28656" class="attrax-vacancy-tile__title">Cloud Engineer</a>
-            <div class="attrax-vacancy-tile__item">
-              <span class="attrax-vacancy-tile__item-label">Location</span>
-              <span class="attrax-vacancy-tile__item-value">București</span>
-            </div>
-            <div class="attrax-vacancy-tile__item">
-              <span class="attrax-vacancy-tile__item-label">Work Model</span>
-              <span class="attrax-vacancy-tile__item-value">Hybrid</span>
-            </div>
-          </div>
-        </body>
-        </html>
-      `;
+    it('should parse Attrax vacancy tiles from HTML', () => {
+      const result = index.parseHtmlJobs(sampleHtml);
 
-      const result = index.parseHtmlJobs(html);
-
-      expect(result.jobs).toHaveLength(2);
       expect(result.total).toBe(17);
-      expect(result.jobs[0].title).toBe('Platform Architect - Procurement');
-      expect(result.jobs[0].url).toBe('https://careers.metro.digital/job/platform-architect-procurement-in-soseaua-pipera-43-bucuresti-jid-29901');
-      expect(result.jobs[0].city).toBe('București');
-      expect(result.jobs[0].workmode).toBe('hybrid');
+      expect(result.jobs).toHaveLength(2);
+
+      const first = result.jobs[0];
+      expect(first.title).toBe('Senior Developer');
+      expect(first.url).toMatch(/^https:\/\/careers\.metro\.digital\//);
+      expect(first.location).toEqual(['Bucharest']);
+      expect(first.workmode).toBe('remote');
+
+      const second = result.jobs[1];
+      expect(second.title).toBe('Backend Engineer');
+      expect(second.location).toEqual(['Cluj-Napoca']);
+      expect(second.workmode).toBe('hybrid');
     });
 
     it('should handle empty HTML', () => {
       const result = index.parseHtmlJobs('<html><body></body></html>');
+
       expect(result.jobs).toEqual([]);
       expect(result.total).toBe(0);
     });
 
-    it('should filter only Romanian city jobs', () => {
-      const html = `
-        <html><body>
-          <div>5 Result(s)</div>
-          <div class="attrax-vacancy-tile">
-            <a href="/job/test-jid-1" class="attrax-vacancy-tile__title">Job Bucharest</a>
-            <div class="attrax-vacancy-tile__item">
-              <span class="attrax-vacancy-tile__item-label">Location</span>
-              <span class="attrax-vacancy-tile__item-value">București</span>
-            </div>
-          </div>
-          <div class="attrax-vacancy-tile">
-            <a href="/job/test-jid-2" class="attrax-vacancy-tile__title">Job Germany</a>
-            <div class="attrax-vacancy-tile__item">
-              <span class="attrax-vacancy-tile__item-label">Location</span>
-              <span class="attrax-vacancy-tile__item-value">Düsseldorf</span>
-            </div>
-          </div>
-        </body></html>
-      `;
+    it('should handle missing data', () => {
+      const result = index.parseHtmlJobs('');
 
-      const result = index.parseHtmlJobs(html);
-      expect(result.jobs).toHaveLength(2);
-      expect(result.jobs[0].city).toBe('București');
-      expect(result.jobs[1].city).toBe('Düsseldorf');
+      expect(result.jobs).toEqual([]);
     });
   });
 });

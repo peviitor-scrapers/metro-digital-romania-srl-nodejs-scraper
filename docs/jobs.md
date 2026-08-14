@@ -7,14 +7,14 @@
 | CIF | 43319098 |
 | Brand | METRO DIGITAL |
 | Status | activ |
-| Location | PIPERA, 43, Bucureşti Sectorul 2, Bucureşti |
+| Location | MUNICIPIUL BUCUREŞTI, SECTOR 2, ŞOS PIPERA, NR.43, CLĂDIREA A. ÎN COMPLEXUL DE BIROURI FLOREASCA PARK, ET.6 |
 | Website | [https://metro.digital](https://metro.digital) |
 | Careers | [https://careers.metro.digital/jobs](https://careers.metro.digital/jobs) |
 | Last Scraped | 2026-08-14 |
 
 ## Current Job Listings (23)
 
-_Generated: 2026-08-14T07:19:38.535Z_
+_Generated: 2026-08-14T18:02:19.816Z_
 
 ### Squad Lead - Ordering for Global Process Operations (m/f/d)
 

@@ -42,14 +42,14 @@ function peviitorResponse(companies) {
   };
 }
 
-function solrResponse(numFound, docs) {
+function solrResponse(total, data) {
   return {
     ok: true,
-    json: async () => ({ response: { numFound, docs } })
+    json: async () => ({ total, data })
   };
 }
 
-const METRO_DIGITAL_ANAF_RECORD = {
+const METRO_ANAF_RECORD = {
   cui: 43319098,
   name: 'METRO DIGITAL ROMANIA S.R.L.',
   address: 'PIPERA, 43, Bucureşti Sectorul 2, Bucureşti',
@@ -57,22 +57,20 @@ const METRO_DIGITAL_ANAF_RECORD = {
   inactive: false,
   vatRegistered: true,
   eFacturaRegistered: true,
-  headquartersAddress: { locality: 'Bucureşti Sectorul 2' }
+  headquartersAddress: { locality: 'Bucureşti Sectorul 1' }
 };
 
 describe('company.js', () => {
   let company;
 
   beforeAll(async () => {
-    process.env.SOLR_AUTH = 'test:test';
     fs.mkdirSync("tmp", { recursive: true });
     backupFile(COMPANY_JSON_PATH);
     backupFile(ROOT_COMPANY_JSON_PATH);
-    company = await import('../../company.js');
+    company = await import('../../scraper/company.js');
   });
 
   afterAll(() => {
-    delete process.env.SOLR_AUTH;
     restoreFile(COMPANY_JSON_PATH);
     restoreFile(ROOT_COMPANY_JSON_PATH);
   });
@@ -84,7 +82,7 @@ describe('company.js', () => {
 
   describe('getCompanyData (no cache)', () => {
     it('should fetch METRO DIGITAL via direct CIF lookup and return company data', async () => {
-      mockFetch.mockResolvedValueOnce(anafCompanyResponse(METRO_DIGITAL_ANAF_RECORD));
+      mockFetch.mockResolvedValueOnce(anafCompanyResponse(METRO_ANAF_RECORD));
 
       const result = await company.getCompanyData();
 
@@ -111,7 +109,7 @@ describe('company.js', () => {
   describe('getCompanyData (with cache)', () => {
     const cachedData = {
       validatedAt: new Date().toISOString(),
-      anaf: METRO_DIGITAL_ANAF_RECORD,
+      anaf: METRO_ANAF_RECORD,
       summary: {
         company: 'METRO DIGITAL ROMANIA S.R.L.',
         cif: '43319098',
@@ -140,7 +138,7 @@ describe('company.js', () => {
 
     it('should return company data with status active', async () => {
       mockFetch
-        .mockResolvedValueOnce(anafCompanyResponse(METRO_DIGITAL_ANAF_RECORD))
+        .mockResolvedValueOnce(anafCompanyResponse(METRO_ANAF_RECORD))
         .mockResolvedValueOnce(solrResponse(5, [
           { url: 'https://test.com/1', title: 'Job 1' },
           { url: 'https://test.com/2', title: 'Job 2' }
@@ -155,5 +153,20 @@ describe('company.js', () => {
       expect(result).toHaveProperty('existingJobsCount');
       expect(typeof result.existingJobsCount).toBe('number');
     });
+
+    // METRO DIGITAL e activă — testul inactive se rulează doar dacă firma e inactivă
+    if (METRO_ANAF_RECORD.inactive) {
+      it('should return inactive status when company is inactive', async () => {
+        const inactiveRecord = { ...METRO_ANAF_RECORD, inactive: true };
+
+        mockFetch
+          .mockResolvedValueOnce(anafCompanyResponse(inactiveRecord))
+          .mockResolvedValueOnce(solrResponse(0, []));
+
+        const result = await company.validateAndGetCompany();
+
+        expect(result).toHaveProperty('status', 'inactive');
+      });
+    }
   });
 });

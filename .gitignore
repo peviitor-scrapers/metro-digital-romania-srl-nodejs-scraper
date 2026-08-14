@@ -41,6 +41,7 @@ jobs_epam_ro.json
 jobs_existing.json
 jobs_valid.json
 company_data.json
+company.json
 delete.json
 epam_response.json
 

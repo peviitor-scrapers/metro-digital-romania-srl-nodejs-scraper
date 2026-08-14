@@ -6,7 +6,7 @@ This repo is a **derived scraper** — created from the [EPAM template](https://
 
 ### Company Identity
 
-All company-specific configuration lives in `config/company.json`:
+All company-specific configuration lives in `scraper/config/company.json`:
 
 ```json
 {

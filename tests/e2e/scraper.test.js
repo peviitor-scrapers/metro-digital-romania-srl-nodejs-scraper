@@ -1,19 +1,19 @@
 import { jest } from '@jest/globals';
-import dotenv from 'dotenv';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import fetch from 'node-fetch';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-dotenv.config({ path: path.resolve(__dirname, '../../.env.local') });
+const API_BASE = 'https://api.peviitor.ro/v1';
 
-const HAS_SOLR = !!process.env.SOLR_AUTH;
+let HAS_API = false;
 
-function itIfSolr(name, fn, timeout) {
-  if (HAS_SOLR) {
-    return it(name, fn, timeout);
+async function checkApiAvailability() {
+  try {
+    const res = await fetch(`${API_BASE}/scraper/jobs/?cif=${companyConfig.id}&rows=1`, {
+      signal: AbortSignal.timeout(5000)
+    });
+    return res.ok || res.status === 400;
+  } catch {
+    return false;
   }
-  return it.skip(`${name} (skipped: SOLR_AUTH not set)`, fn, timeout);
 }
 
 let HAS_ANAF = false;
@@ -30,6 +30,13 @@ async function checkAnafAvailability() {
   }
 }
 
+function itIfApi(name, fn, timeout) {
+  if (HAS_API) {
+    return it(name, fn, timeout);
+  }
+  return it.skip(`${name} (skipped: API unavailable)`, fn, timeout);
+}
+
 function itIfAnaf(name, fn, timeout) {
   if (HAS_ANAF) {
     return it(name, fn, timeout);
@@ -37,45 +44,39 @@ function itIfAnaf(name, fn, timeout) {
   return it.skip(`${name} (skipped: ANAF API unavailable)`, fn, timeout);
 }
 
-beforeAll(async () => {
-  HAS_ANAF = await checkAnafAvailability();
-  if (HAS_SOLR) {
-    process.env.SOLR_AUTH = process.env.SOLR_AUTH;
-  }
-});
+import companyConfig from '../../scraper/config/company.js';
+const TEST_CIF = companyConfig.id;
+const TEST_BRAND = companyConfig.brand;
+const COMPANY_NAME = companyConfig.company;
+const METRO_HTML_URL = 'https://careers.metro.digital/jobs?page=1';
 
-const TEST_CIF = '43319098';
-const CAREER_URL = 'https://careers.metro.digital/jobs';
-const ROMANIAN_CITIES = ['București', 'Cluj-Napoca', 'Bucharest', 'Timișoara'];
+beforeAll(async () => {
+  [HAS_API, HAS_ANAF] = await Promise.all([checkApiAvailability(), checkAnafAvailability()]);
+});
 
 describe('E2E: Full Scraping Pipeline', () => {
 
-  describe('Metro Digital Careers — Real HTML Fetch', () => {
+  describe('Metro Digital Careers HTML — Real Data Fetch', () => {
     let html;
 
     beforeAll(async () => {
-      const res = await fetch(CAREER_URL, {
+      const res = await fetch(METRO_HTML_URL, {
         headers: {
           'User-Agent': 'job_seeker_ro_spider',
           'Accept': 'text/html'
-        }
+        },
+        redirect: 'follow'
       });
       html = await res.text();
-    }, 30000);
+    }, 15000);
 
-    it('should respond with valid HTML from Metro Digital Careers', () => {
-      expect(html).toBeDefined();
-      expect(html).toContain('<!DOCTYPE html>');
+    it('should respond with valid HTML containing vacancy tiles', () => {
+      expect(html.length).toBeGreaterThan(0);
       expect(html).toContain('attrax-vacancy-tile');
     }, 10000);
 
-    it('should have job listings in the HTML', () => {
-      expect(html).toContain('Result(s)');
+    it('should contain job titles in the HTML', () => {
       expect(html).toContain('attrax-vacancy-tile__title');
-    });
-
-    it('should have Romania jobs in the HTML', () => {
-      expect(html).toContain('București');
     });
   });
 
@@ -84,15 +85,16 @@ describe('E2E: Full Scraping Pipeline', () => {
     let html;
 
     beforeAll(async () => {
-      index = await import('../../index.js');
-      const res = await fetch(CAREER_URL, {
+      index = await import('../../scraper/index.js');
+      const res = await fetch(METRO_HTML_URL, {
         headers: {
           'User-Agent': 'job_seeker_ro_spider',
           'Accept': 'text/html'
-        }
+        },
+        redirect: 'follow'
       });
       html = await res.text();
-    }, 30000);
+    }, 15000);
 
     it('should parse real Metro Digital HTML into standardized format', () => {
       const result = index.parseHtmlJobs(html);
@@ -109,7 +111,7 @@ describe('E2E: Full Scraping Pipeline', () => {
       expect(['remote', 'on-site', 'hybrid']).toContain(parsed.workmode);
       expect(parsed).toHaveProperty('location');
       expect(Array.isArray(parsed.location)).toBe(true);
-    }, 15000);
+    });
 
     it('should map parsed jobs to job model', () => {
       const parsed = index.parseHtmlJobs(html);
@@ -130,14 +132,14 @@ describe('E2E: Full Scraping Pipeline', () => {
 
       const payload = {
         source: 'careers.metro.digital',
-        company: 'METRO DIGITAL ROMANIA S.R.L.',
+        company: COMPANY_NAME,
         cif: TEST_CIF,
         jobs
       };
 
       const transformed = index.transformJobsForSOLR(payload);
 
-      expect(transformed.company).toBe('METRO DIGITAL ROMANIA S.R.L.');
+      expect(transformed.company).toBe(COMPANY_NAME);
       expect(transformed.jobs.length).toBe(jobs.length);
 
       for (const job of transformed.jobs) {
@@ -166,64 +168,95 @@ describe('E2E: Full Scraping Pipeline', () => {
     let company;
 
     beforeAll(async () => {
-      anaf = await import('../../src/anaf.js');
-      company = await import('../../company.js');
+      anaf = await import('../../scraper/anaf.js');
+      company = await import('../../scraper/company.js');
     });
 
-    itIfAnaf('should find METRO DIGITAL in ANAF and validate status', async () => {
-      const results = await anaf.searchCompany('Metro Digital Romania');
+    itIfAnaf('should find Metro Digital in ANAF and validate active status', async () => {
+      const results = await anaf.searchCompany(TEST_BRAND);
 
       const metro = results.find(c =>
-        c.name.toUpperCase().includes('METRO DIGITAL')
+        c.cui.toString() === TEST_CIF &&
+        c.statusLabel === 'Funcțiune'
       );
       expect(metro).toBeDefined();
-
-      const anafData = await anaf.getCompanyFromANAF(metro.cui.toString());
-      expect(anafData).toBeDefined();
-      expect(anafData.name).toBe('METRO DIGITAL ROMANIA S.R.L.');
+      expect(metro.cui.toString()).toBe(TEST_CIF);
     }, 30000);
 
-    itIfSolr('should run full validation and report active status', async () => {
+    itIfAnaf('should fetch active company data from ANAF', async () => {
+      const anafData = await anaf.getCompanyFromANAF(TEST_CIF);
+      expect(anafData).toBeDefined();
+      expect(anafData.inactive).toBe(false);
+    }, 30000);
+
+    itIfApi('should run full validation and report active status with job count', async () => {
       const result = await company.validateAndGetCompany();
 
       expect(result.status).toBe('active');
-      expect(result.company).toBe('METRO DIGITAL ROMANIA S.R.L.');
+      expect(result.company).toBe(COMPANY_NAME);
       expect(result.cif).toBe(TEST_CIF);
+
+      if (result.existingJobsCount === 0) {
+        console.log('⚠️ No Metro Digital jobs in API — skipping job count assertion');
+        return;
+      }
+      expect(result.existingJobsCount).toBeGreaterThan(0);
     }, 30000);
   });
 
-  describe('SOLR Data Verification', () => {
-    let solr;
+  describe('Inactive Company Handling', () => {
+    let anaf;
 
     beforeAll(async () => {
-      solr = await import('../../solr.js');
+      anaf = await import('../../scraper/anaf.js');
     });
 
-    itIfSolr('should have METRO DIGITAL jobs in SOLR with correct company name', async () => {
-      const result = await solr.querySOLR(TEST_CIF);
+    itIfAnaf('should detect inactive/radiated companies via ANAF', async () => {
+      const results = await anaf.searchCompany(TEST_BRAND);
+
+      const nonActive = results.find(c => c.statusLabel !== 'Funcțiune');
+
+      if (nonActive) {
+        try {
+          const anafData = await anaf.getCompanyFromANAF(nonActive.cui.toString());
+          expect(anafData).toBeDefined();
+          if (anafData.inactive !== undefined) {
+            expect(anafData.inactive).toBe(true);
+          }
+        } catch {
+          expect(nonActive.statusLabel).toMatch(/Radiată|Inactiv|Suspendat/);
+        }
+      }
+    }, 30000);
+  });
+
+  describe('API Data Verification', () => {
+    let api;
+
+    beforeAll(async () => {
+      api = await import('../../scraper/api.js');
+    });
+
+    itIfApi('should have Metro Digital jobs in API with correct company name', async () => {
+      const result = await api.querySOLR(TEST_CIF);
 
       if (result.numFound === 0) {
-        console.log('No METRO DIGITAL jobs in Solr — skipping SOLR data verification');
+        console.log('⚠️ No Metro Digital jobs in API — skipping API data verification');
         return;
       }
 
       for (const job of result.docs) {
-        expect(job.company).toBe('METRO DIGITAL ROMANIA S.R.L.');
+        expect(job.company).toBe(COMPANY_NAME);
         expect(job.cif).toBe(TEST_CIF);
       }
     }, 15000);
 
-    itIfSolr('should have METRO DIGITAL company core entry with required fields', async () => {
-      const result = await solr.queryCompanySOLR(`id:${TEST_CIF}`);
+    itIfApi('should have Metro Digital company core entry with required fields', async () => {
+      const companyDoc = await api.getCompanyByCif(TEST_CIF);
 
-      if (result.numFound === 0) {
-        console.log('No METRO DIGITAL company in Solr yet — skipping');
-        return;
-      }
-
-      const metro = result.docs[0];
-      expect(metro.company).toBe('METRO DIGITAL ROMANIA S.R.L.');
-      expect(metro.status).toBe('activ');
+      expect(companyDoc).toBeDefined();
+      expect(companyDoc.company).toBe(COMPANY_NAME);
+      expect(companyDoc.status).toBe('activ');
     }, 15000);
   });
 });

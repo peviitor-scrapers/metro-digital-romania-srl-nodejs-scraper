@@ -1,18 +1,18 @@
-import { generateJobsMarkdown } from "../../src/markdown-generator.js";
+import { generateJobsMarkdown } from "../../scraper/markdown-generator.js";
 
 const baseCompany = {
-  id: "33159615",
-  company: "EPAM SYSTEMS INTERNATIONAL SRL",
-  brand: "EPAM",
+  id: "43319098",
+  company: "METRO DIGITAL ROMANIA S.R.L.",
+  brand: "METRO DIGITAL",
   status: "activ",
   location: ["București"],
-  website: ["https://www.epam.com"],
-  career: ["https://careers.epam.com"],
+  website: ["https://metro.digital"],
+  career: ["https://careers.metro.digital/jobs"],
   lastScraped: "2026-06-17"
 };
 
 const baseJob = {
-  url: "https://careers.epam.com/en/vacancy/123_en",
+  url: "https://careers.metro.digital/jobs/en/vacancy/123_en",
   title: "Senior Node.js Developer",
   workmode: "hybrid",
   location: ["București"],
@@ -24,17 +24,17 @@ describe("generateJobsMarkdown", () => {
   describe("company section", () => {
     it("includes company name as h1", () => {
       const md = generateJobsMarkdown(baseCompany, []);
-      expect(md).toContain("# EPAM SYSTEMS INTERNATIONAL SRL");
+      expect(md).toContain("# METRO DIGITAL ROMANIA S.R.L.");
     });
 
     it("includes CIF", () => {
       const md = generateJobsMarkdown(baseCompany, []);
-      expect(md).toContain("33159615");
+      expect(md).toContain("43319098");
     });
 
     it("includes brand", () => {
       const md = generateJobsMarkdown(baseCompany, []);
-      expect(md).toContain("EPAM");
+      expect(md).toContain("METRO DIGITAL");
     });
 
     it("includes status", () => {
@@ -44,12 +44,12 @@ describe("generateJobsMarkdown", () => {
 
     it("includes website as markdown link", () => {
       const md = generateJobsMarkdown(baseCompany, []);
-      expect(md).toContain("[https://www.epam.com](https://www.epam.com)");
+      expect(md).toContain("[https://metro.digital](https://metro.digital)");
     });
 
     it("includes career page as markdown link", () => {
       const md = generateJobsMarkdown(baseCompany, []);
-      expect(md).toContain("[https://careers.epam.com](https://careers.epam.com)");
+      expect(md).toContain("[https://careers.metro.digital/jobs](https://careers.metro.digital/jobs)");
     });
 
     it("includes lastScraped date", () => {
@@ -58,9 +58,9 @@ describe("generateJobsMarkdown", () => {
     });
 
     it("omits optional fields when not present", () => {
-      const minimal = { id: "33159615", company: "EPAM SYSTEMS INTERNATIONAL SRL" };
+      const minimal = { id: "43319098", company: "METRO DIGITAL ROMANIA S.R.L." };
       const md = generateJobsMarkdown(minimal, []);
-      expect(md).toContain("# EPAM SYSTEMS INTERNATIONAL SRL");
+      expect(md).toContain("# METRO DIGITAL ROMANIA S.R.L.");
       expect(md).not.toContain("Brand");
       expect(md).not.toContain("Last Scraped");
     });
@@ -84,7 +84,7 @@ describe("generateJobsMarkdown", () => {
 
     it("includes job URL as markdown link", () => {
       const md = generateJobsMarkdown(baseCompany, [baseJob]);
-      expect(md).toContain("[https://careers.epam.com/en/vacancy/123_en]");
+      expect(md).toContain("[https://careers.metro.digital/jobs/en/vacancy/123_en]");
     });
 
     it("includes workmode", () => {
@@ -108,7 +108,7 @@ describe("generateJobsMarkdown", () => {
     });
 
     it("renders multiple jobs", () => {
-      const job2 = { ...baseJob, title: "DevOps Engineer", url: "https://careers.epam.com/en/vacancy/456_en" };
+      const job2 = { ...baseJob, title: "DevOps Engineer", url: "https://careers.metro.digital/jobs/en/vacancy/456_en" };
       const md = generateJobsMarkdown(baseCompany, [baseJob, job2]);
       expect(md).toContain("### Senior Node.js Developer");
       expect(md).toContain("### DevOps Engineer");
@@ -116,7 +116,7 @@ describe("generateJobsMarkdown", () => {
     });
 
     it("handles job with no optional fields", () => {
-      const minimal = { url: "https://careers.epam.com/en/vacancy/999_en", title: "QA Engineer" };
+      const minimal = { url: "https://careers.metro.digital/jobs/en/vacancy/999_en", title: "QA Engineer" };
       const md = generateJobsMarkdown(baseCompany, [minimal]);
       expect(md).toContain("### QA Engineer");
       expect(md).not.toContain("Work Mode");
@@ -134,6 +134,38 @@ describe("generateJobsMarkdown", () => {
     it("includes a generated timestamp", () => {
       const md = generateJobsMarkdown(baseCompany, []);
       expect(md).toMatch(/_Generated: \d{4}-\d{2}-\d{2}/);
+    });
+  });
+
+  describe("markdown escaping", () => {
+    it("escapes # in job titles", () => {
+      const job = { ...baseJob, title: "C# Developer" };
+      const md = generateJobsMarkdown(baseCompany, [job]);
+      expect(md).toContain("### C\\# Developer");
+    });
+
+    it("escapes * in job titles", () => {
+      const job = { ...baseJob, title: "Full-Stack * Developer" };
+      const md = generateJobsMarkdown(baseCompany, [job]);
+      expect(md).toContain("### Full-Stack \\* Developer");
+    });
+
+    it("escapes [ ] in company name", () => {
+      const company = { ...baseCompany, company: "ACME [Tech] SRL" };
+      const md = generateJobsMarkdown(company, []);
+      expect(md).toContain("# ACME \\[Tech\\] SRL");
+    });
+
+    it("escapes ` in tags", () => {
+      const job = { ...baseJob, tags: ["node.js", "`bash`"] };
+      const md = generateJobsMarkdown(baseCompany, [job]);
+      expect(md).toContain("\\`bash\\`");
+    });
+
+    it("escapes # in location", () => {
+      const job = { ...baseJob, location: ["Building #5"] };
+      const md = generateJobsMarkdown(baseCompany, [job]);
+      expect(md).toContain("Building \\#5");
     });
   });
 });
