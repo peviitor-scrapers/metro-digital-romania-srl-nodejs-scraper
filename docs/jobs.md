@@ -10,45 +10,52 @@
 | Location | MUNICIPIUL BUCUREŞTI, SECTOR 2, ŞOS PIPERA, NR.43, CLĂDIREA A. ÎN COMPLEXUL DE BIROURI FLOREASCA PARK, ET.6 |
 | Website | [https://metro.digital](https://metro.digital) |
 | Careers | [https://careers.metro.digital/jobs](https://careers.metro.digital/jobs) |
-| Last Scraped | 2026-10-02 |
+| Last Scraped | 2026-11-14 |
 
-## Current Job Listings (21)
+## Current Job Listings (30)
 
-_Generated: 2026-10-02T16:02:11.799Z_
+_Generated: 2026-11-14T15:01:20.859Z_
 
-### IT Support Analyst - Local IT & Support
+### Ausbildung zum Kaufmann (m/w/d) für Digitalisierungsmanagement
 
-- **URL:** [https://careers.metro.digital/job/it-support-analyst-local-it-and-support-in-soseaua-pipera-43-bucuresti-jid-34715](https://careers.metro.digital/job/it-support-analyst-local-it-and-support-in-soseaua-pipera-43-bucuresti-jid-34715)
-- **Work Mode:** remote
-- **Location:** București
-- **Status:** scraped
-
-### Program and Portfolio Manager – Transformation Office Transversal Team
-
-- **URL:** [https://careers.metro.digital/job/program-and-portfolio-manager-transformation-office-transversal-team-in-soseaua-pipera-43-bucuresti-jid-31100](https://careers.metro.digital/job/program-and-portfolio-manager-transformation-office-transversal-team-in-soseaua-pipera-43-bucuresti-jid-31100)
-- **Work Mode:** hybrid
-- **Location:** București
-- **Status:** scraped
-
-### Program and Portfolio Manager – Transformation Office Transversal Team (m/f/d)
-
-- **URL:** [https://careers.metro.digital/job/program-and-portfolio-manager-transformation-office-transversal-team-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-31099](https://careers.metro.digital/job/program-and-portfolio-manager-transformation-office-transversal-team-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-31099)
+- **URL:** [https://careers.metro.digital/job/ausbildung-zum-kaufmann-m-w-d-fuer-digitalisierungsmanagement-in-schlueterstrasse-5-duesseldorf-jid-35508](https://careers.metro.digital/job/ausbildung-zum-kaufmann-m-w-d-fuer-digitalisierungsmanagement-in-schlueterstrasse-5-duesseldorf-jid-35508)
 - **Work Mode:** hybrid
 - **Location:** România
 - **Status:** scraped
 
-### Solution Expert - M.Store
+### Ausbildung zum Fachinformatiker (m/w/d) Daten- und Prozessanalyse
 
-- **URL:** [https://careers.metro.digital/job/solution-expert-m-store-in-soseaua-pipera-nr-43-bucuresti-jid-34595](https://careers.metro.digital/job/solution-expert-m-store-in-soseaua-pipera-nr-43-bucuresti-jid-34595)
+- **URL:** [https://careers.metro.digital/job/ausbildung-zum-fachinformatiker-m-w-d-daten-und-prozessanalyse-in-schlueterstrasse-5-duesseldorf-jid-35507](https://careers.metro.digital/job/ausbildung-zum-fachinformatiker-m-w-d-daten-und-prozessanalyse-in-schlueterstrasse-5-duesseldorf-jid-35507)
 - **Work Mode:** hybrid
-- **Location:** București
+- **Location:** România
 - **Status:** scraped
 
-### Backend Engineer (Scala) - Identity & Access Management (IDAM)
+### Working Student / Intern, Digital Transformation Office – Change & Communications (m/f/d)
 
-- **URL:** [https://careers.metro.digital/job/backend-engineer-scala-identity-and-access-management-idam-in-soseaua-pipera-43-bucuresti-jid-32085](https://careers.metro.digital/job/backend-engineer-scala-identity-and-access-management-idam-in-soseaua-pipera-43-bucuresti-jid-32085)
+- **URL:** [https://careers.metro.digital/job/working-student-intern-digital-transformation-office-change-and-communications-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-35412](https://careers.metro.digital/job/working-student-intern-digital-transformation-office-change-and-communications-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-35412)
 - **Work Mode:** hybrid
-- **Location:** București
+- **Location:** România
+- **Status:** scraped
+
+### IT Support Analyst - Global Helpdesk (18 month fixed‑term contract) (m/f/d)
+
+- **URL:** [https://careers.metro.digital/job/it-support-analyst-global-helpdesk-18-month-fixed-term-contract-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-35353](https://careers.metro.digital/job/it-support-analyst-global-helpdesk-18-month-fixed-term-contract-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-35353)
+- **Work Mode:** hybrid
+- **Location:** România
+- **Status:** scraped
+
+### People Strategist International IT (m/f/d)
+
+- **URL:** [https://careers.metro.digital/job/people-strategist-international-it-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-35351](https://careers.metro.digital/job/people-strategist-international-it-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-35351)
+- **Work Mode:** hybrid
+- **Location:** România
+- **Status:** scraped
+
+### Enterprise Architect (m/f/d)
+
+- **URL:** [https://careers.metro.digital/job/enterprise-architect-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-35186](https://careers.metro.digital/job/enterprise-architect-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-35186)
+- **Work Mode:** hybrid
+- **Location:** România
 - **Status:** scraped
 
 ### Solution Expert- Marketing platform (m/f/d)
@@ -56,6 +63,104 @@ _Generated: 2026-10-02T16:02:11.799Z_
 - **URL:** [https://careers.metro.digital/job/solution-expert-marketing-platform-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-33482](https://careers.metro.digital/job/solution-expert-marketing-platform-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-33482)
 - **Work Mode:** hybrid
 - **Location:** România
+- **Status:** scraped
+
+### Project Manager - Project & Program Management (m/f/d)
+
+- **URL:** [https://careers.metro.digital/job/project-manager-project-and-program-management-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-35216](https://careers.metro.digital/job/project-manager-project-and-program-management-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-35216)
+- **Work Mode:** hybrid
+- **Location:** România
+- **Status:** scraped
+
+### LUCA SAP Finance Project Manager (m/f/d)
+
+- **URL:** [https://careers.metro.digital/job/luca-sap-finance-project-manager-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-35194](https://careers.metro.digital/job/luca-sap-finance-project-manager-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-35194)
+- **Work Mode:** hybrid
+- **Location:** România
+- **Status:** scraped
+
+### SAP Ariba Solution Architect (m/f/d)
+
+- **URL:** [https://careers.metro.digital/job/sap-ariba-solution-architect-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-35145](https://careers.metro.digital/job/sap-ariba-solution-architect-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-35145)
+- **Work Mode:** hybrid
+- **Location:** România
+- **Status:** scraped
+
+### Solution Architect- SAP S4/HANA FINANCE  (m/f/d)
+
+- **URL:** [https://careers.metro.digital/job/solution-architect-sap-s4-hana-finance-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-35140](https://careers.metro.digital/job/solution-architect-sap-s4-hana-finance-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-35140)
+- **Work Mode:** hybrid
+- **Location:** România
+- **Status:** scraped
+
+### Solution Architect- SAP S4/HANA FINANCE (m/f/d)
+
+- **URL:** [https://careers.metro.digital/job/solution-architect-sap-s4-hana-finance-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-33230](https://careers.metro.digital/job/solution-architect-sap-s4-hana-finance-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-33230)
+- **Work Mode:** hybrid
+- **Location:** România
+- **Status:** scraped
+
+### AI Solution Architect – AI & Automation platform (m/f/d)
+
+- **URL:** [https://careers.metro.digital/job/ai-solution-architect-ai-and-automation-platform-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-35128](https://careers.metro.digital/job/ai-solution-architect-ai-and-automation-platform-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-35128)
+- **Work Mode:** hybrid
+- **Location:** România
+- **Status:** scraped
+
+### AI Engineer- AI & Automation platform
+
+- **URL:** [https://careers.metro.digital/job/ai-engineer-ai-and-automation-platform-in-soseaua-pipera-43-bucuresti-jid-35093](https://careers.metro.digital/job/ai-engineer-ai-and-automation-platform-in-soseaua-pipera-43-bucuresti-jid-35093)
+- **Work Mode:** hybrid
+- **Location:** București
+- **Status:** scraped
+
+### Agile Master
+
+- **URL:** [https://careers.metro.digital/job/agile-master-in-soseaua-pipera-43-bucuresti-jid-35054](https://careers.metro.digital/job/agile-master-in-soseaua-pipera-43-bucuresti-jid-35054)
+- **Work Mode:** hybrid
+- **Location:** București
+- **Status:** scraped
+
+### Skill Chapter Lead – Foundation Workplace
+
+- **URL:** [https://careers.metro.digital/job/skill-chapter-lead-foundation-workplace-in-schlueterstrasse-5-duesseldorf-jid-34989](https://careers.metro.digital/job/skill-chapter-lead-foundation-workplace-in-schlueterstrasse-5-duesseldorf-jid-34989)
+- **Work Mode:** hybrid
+- **Location:** România
+- **Status:** scraped
+
+### Procurement Consultant – IT Procurement (m/f/d)
+
+- **URL:** [https://careers.metro.digital/job/procurement-consultant-it-procurement-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-34934](https://careers.metro.digital/job/procurement-consultant-it-procurement-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-34934)
+- **Work Mode:** hybrid
+- **Location:** România
+- **Status:** scraped
+
+### Operations Manager – Integration and Delivery Tools Platform
+
+- **URL:** [https://careers.metro.digital/job/operations-manager-integration-and-delivery-tools-platform-in-soseaua-pipera-nr-43-bucuresti-jid-34913](https://careers.metro.digital/job/operations-manager-integration-and-delivery-tools-platform-in-soseaua-pipera-nr-43-bucuresti-jid-34913)
+- **Work Mode:** hybrid
+- **Location:** București
+- **Status:** scraped
+
+### Working Student / Intern - Employer Branding & Communications (m/f/d)
+
+- **URL:** [https://careers.metro.digital/job/working-student-intern-employer-branding-and-communications-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-34884](https://careers.metro.digital/job/working-student-intern-employer-branding-and-communications-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-34884)
+- **Work Mode:** hybrid
+- **Location:** România
+- **Status:** scraped
+
+### Service Manager – Continuous Delivery & Quality
+
+- **URL:** [https://careers.metro.digital/job/service-manager-continuous-delivery-and-quality-in-soseaua-pipera-nr-43-bucuresti-jid-29295](https://careers.metro.digital/job/service-manager-continuous-delivery-and-quality-in-soseaua-pipera-nr-43-bucuresti-jid-29295)
+- **Work Mode:** hybrid
+- **Location:** București
+- **Status:** scraped
+
+### IT Support Analyst - Local IT & Support
+
+- **URL:** [https://careers.metro.digital/job/it-support-analyst-local-it-and-support-in-soseaua-pipera-43-bucuresti-jid-34715](https://careers.metro.digital/job/it-support-analyst-local-it-and-support-in-soseaua-pipera-43-bucuresti-jid-34715)
+- **Work Mode:** remote
+- **Location:** București
 - **Status:** scraped
 
 ### Platform Architect- Procurement
@@ -72,23 +177,9 @@ _Generated: 2026-10-02T16:02:11.799Z_
 - **Location:** România
 - **Status:** scraped
 
-### Solution Architect- SAP S4/HANA FINANCE (m/f/d)
-
-- **URL:** [https://careers.metro.digital/job/solution-architect-sap-s4-hana-finance-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-33230](https://careers.metro.digital/job/solution-architect-sap-s4-hana-finance-m-f-d-in-schlueterstrasse-5-duesseldorf-jid-33230)
-- **Work Mode:** hybrid
-- **Location:** România
-- **Status:** scraped
-
 ### Senior UX/UI Designer – limited for 2 years maternity cover
 
 - **URL:** [https://careers.metro.digital/job/senior-ux-ui-designer-limited-for-2-years-maternity-cover-in-soseaua-pipera-43-bucuresti-jid-34519](https://careers.metro.digital/job/senior-ux-ui-designer-limited-for-2-years-maternity-cover-in-soseaua-pipera-43-bucuresti-jid-34519)
-- **Work Mode:** hybrid
-- **Location:** București
-- **Status:** scraped
-
-### Operations Manager – Integration & Delivery Tools
-
-- **URL:** [https://careers.metro.digital/job/operations-manager-integration-and-delivery-tools-in-soseaua-pipera-nr-43-bucuresti-jid-34506](https://careers.metro.digital/job/operations-manager-integration-and-delivery-tools-in-soseaua-pipera-nr-43-bucuresti-jid-34506)
 - **Work Mode:** hybrid
 - **Location:** București
 - **Status:** scraped
@@ -114,13 +205,6 @@ _Generated: 2026-10-02T16:02:11.799Z_
 - **Location:** București
 - **Status:** scraped
 
-### Business Support Assistant
-
-- **URL:** [https://careers.metro.digital/job/business-support-assistant-in-soseaua-pipera-43-bucuresti-jid-34189](https://careers.metro.digital/job/business-support-assistant-in-soseaua-pipera-43-bucuresti-jid-34189)
-- **Work Mode:** hybrid
-- **Location:** București
-- **Status:** scraped
-
 ### Skill Chapter Lead – Global Helpdesk
 
 - **URL:** [https://careers.metro.digital/job/skill-chapter-lead-global-helpdesk-in-strada-ionescu-crum-brasov-jid-33794](https://careers.metro.digital/job/skill-chapter-lead-global-helpdesk-in-strada-ionescu-crum-brasov-jid-33794)
@@ -128,30 +212,9 @@ _Generated: 2026-10-02T16:02:11.799Z_
 - **Location:** Brașov
 - **Status:** scraped
 
-### Skill Chapter Lead – Global Process Operations (L1.5)
-
-- **URL:** [https://careers.metro.digital/job/skill-chapter-lead-global-process-operations-l1-5-in-strada-ionescu-crum-brasov-jid-34014](https://careers.metro.digital/job/skill-chapter-lead-global-process-operations-l1-5-in-strada-ionescu-crum-brasov-jid-34014)
-- **Work Mode:** hybrid
-- **Location:** Brașov
-- **Status:** scraped
-
 ### Skill Chapter Lead – Operations and Checkout Engineering
 
 - **URL:** [https://careers.metro.digital/job/skill-chapter-lead-operations-and-checkout-engineering-in-soseaua-pipera-43-bucuresti-jid-33564](https://careers.metro.digital/job/skill-chapter-lead-operations-and-checkout-engineering-in-soseaua-pipera-43-bucuresti-jid-33564)
-- **Work Mode:** hybrid
-- **Location:** București
-- **Status:** scraped
-
-### Solution Expert for MMS HO / Assortment Management
-
-- **URL:** [https://careers.metro.digital/job/solution-expert-for-mms-ho-assortment-management-in-soseaua-pipera-43-bucuresti-jid-33562](https://careers.metro.digital/job/solution-expert-for-mms-ho-assortment-management-in-soseaua-pipera-43-bucuresti-jid-33562)
-- **Work Mode:** hybrid
-- **Location:** București
-- **Status:** scraped
-
-### Service Manager – Continuous Delivery & Quality
-
-- **URL:** [https://careers.metro.digital/job/service-manager-continuous-delivery-and-quality-in-soseaua-pipera-nr-43-bucuresti-jid-29295](https://careers.metro.digital/job/service-manager-continuous-delivery-and-quality-in-soseaua-pipera-nr-43-bucuresti-jid-29295)
 - **Work Mode:** hybrid
 - **Location:** București
 - **Status:** scraped
